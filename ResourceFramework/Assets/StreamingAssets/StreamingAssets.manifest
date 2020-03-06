@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 2480709911
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: general
+      Dependencies: {}
+    Info_1:
+      Name: sounds
+      Dependencies: {}
+    Info_2:
+      Name: startwnd
+      Dependencies:
+        Dependency_0: general
+    Info_3:
+      Name: abconfig
+      Dependencies: {}

@@ -1,0 +1,101 @@
+ManifestFileVersion: 0
+CRC: 3329307990
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 54cb1c097e054f234b860bddb81d8bc8
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: cb3f6df5cbc4a2990c44c2787bc9553a
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Images/general/intensify.png
+- Assets/Images/general/titledi2.png
+- Assets/Images/general/numdi5.png
+- Assets/Images/general/button7.png
+- Assets/Images/general/button8.png
+- Assets/Images/general/starhalf.png
+- Assets/Images/general/selectKuang2.png
+- Assets/Images/general/arrow1.png
+- Assets/Images/general/returnprop.png
+- Assets/Images/general/window3.png
+- Assets/Images/general/numdi2.png
+- Assets/Images/general/spot4.png
+- Assets/Images/general/arrow5.png
+- Assets/Images/general/coststadi.png
+- Assets/Images/general/background.png
+- Assets/Images/general/spot3.png
+- Assets/Images/general/xinhan.png
+- Assets/Images/general/spot.png
+- Assets/Images/general/window8.png
+- Assets/Images/general/button3.png
+- Assets/Images/general/hero_li.png
+- Assets/Images/general/help.png
+- Assets/Images/general/arrow3.png
+- Assets/Images/general/titledi3.png
+- Assets/Images/general/talkdi.png
+- Assets/Images/general/spot1.png
+- Assets/Images/general/title3.png
+- Assets/Images/general/chuzhan.png
+- Assets/Images/general/numdi1.png
+- Assets/Images/general/discountDetail.png
+- Assets/Images/general/aim.png
+- Assets/Images/general/toastbg.png
+- Assets/Images/general/arrow2.png
+- Assets/Images/general/heart.png
+- Assets/Images/general/button9.png
+- Assets/Images/general/alphadi.png
+- Assets/Images/general/background2.png
+- Assets/Images/general/button6.png
+- Assets/Images/general/close.png
+- Assets/Images/general/namedi.png
+- Assets/Images/general/cuiquBar.png
+- Assets/Images/general/spot22.png
+- Assets/Images/general/toastbg1.png
+- Assets/Images/general/window1.png
+- Assets/Images/general/huawen.png
+- Assets/Images/general/starnormal.png
+- Assets/Images/general/starlight2.png
+- Assets/Images/general/kegoumai.png
+- Assets/Images/general/popwindow1.png
+- Assets/Images/general/cuihuobar.png
+- Assets/Images/general/window7.png
+- Assets/Images/general/baoji.png
+- Assets/Images/general/di.png
+- Assets/Images/general/titledi1.png
+- Assets/Images/general/window6.png
+- Assets/Images/general/spot11.png
+- Assets/Images/general/hero_ming.png
+- Assets/Images/general/window4.png
+- Assets/Images/general/selectKuang.png
+- Assets/Images/general/current.png
+- Assets/Images/general/di10.png
+- Assets/Images/general/button5.png
+- Assets/Images/general/arrow.png
+- Assets/Images/general/shangzhen.png
+- Assets/Images/general/teamupgradedi.png
+- Assets/Images/general/hero_zhi.png
+- Assets/Images/general/congratulateobtain.png
+- Assets/Images/general/numdi4.png
+- Assets/Images/general/btn_share.png
+- Assets/Images/general/arrow4.png
+- Assets/Images/general/spot5.png
+- Assets/Images/general/di2.png
+- Assets/Images/general/title2.png
+- Assets/Images/general/skipplot.png
+- Assets/Images/general/kuang.png
+- Assets/Images/general/titledi.png
+- Assets/Images/general/back.png
+- Assets/Images/general/window5.png
+- Assets/Images/general/numdi3.png
+- Assets/Images/general/window2.png
+- Assets/Images/general/double.png
+- Assets/Images/general/starlight1.png
+- Assets/Images/general/spot2.png
+- Assets/Images/general/starlight.png
+Dependencies: []

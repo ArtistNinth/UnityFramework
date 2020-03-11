@@ -56,4 +56,5 @@ public class ResourceItem
     public List<string> dependencyABNames = null;
 
     public AssetBundle assetBundle = null;
+    public UnityEngine.Object obj = null;
 }

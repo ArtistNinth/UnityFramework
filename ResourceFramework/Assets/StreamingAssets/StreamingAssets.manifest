@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2480709911
+CRC: 3568826146
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -9,9 +9,15 @@ AssetBundleManifest:
       Name: sounds
       Dependencies: {}
     Info_2:
+      Name: capsule
+      Dependencies: {}
+    Info_3:
+      Name: resourcewnd
+      Dependencies: {}
+    Info_4:
       Name: startwnd
       Dependencies:
         Dependency_0: general
-    Info_3:
+    Info_5:
       Name: abconfig
       Dependencies: {}

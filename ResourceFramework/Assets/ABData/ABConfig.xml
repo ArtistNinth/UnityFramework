@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AssetBundleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <abList ABName="capsule" Path="Assets/Prefabs/Capsule.prefab" Crc="3308269843" DependencyABName="" />
   <abList ABName="general" Path="Assets/Images/general/aim.png" Crc="2878932177" DependencyABName="" />
   <abList ABName="general" Path="Assets/Images/general/alphadi.png" Crc="4005580789" DependencyABName="" />
   <abList ABName="general" Path="Assets/Images/general/arrow.png" Crc="2988511928" DependencyABName="" />
@@ -84,6 +85,7 @@
   <abList ABName="general" Path="Assets/Images/general/window7.png" Crc="794393687" DependencyABName="" />
   <abList ABName="general" Path="Assets/Images/general/window8.png" Crc="2903108486" DependencyABName="" />
   <abList ABName="general" Path="Assets/Images/general/xinhan.png" Crc="3197475283" DependencyABName="" />
+  <abList ABName="resourcewnd" Path="Assets/Prefabs/UI/ResourceWnd.prefab" Crc="3760035216" DependencyABName="" />
   <abList ABName="sounds" Path="Assets/Sounds/menusound.mp3" Crc="3949173873" DependencyABName="" />
   <abList ABName="sounds" Path="Assets/Sounds/senlin.mp3" Crc="4128425839" DependencyABName="" />
   <abList ABName="startwnd" Path="Assets/Prefabs/UI/StartWnd.prefab" Crc="118004261" DependencyABName="general" />

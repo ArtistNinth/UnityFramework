@@ -7,4 +7,5 @@
     public const string CSharpExtension = ".cs";
 
     public const int ABItemPoolSize = 500;
+    public const int PrefabInstanceSize = 0;
 }

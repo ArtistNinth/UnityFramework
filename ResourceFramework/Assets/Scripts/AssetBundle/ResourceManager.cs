@@ -56,5 +56,5 @@ public class ResourceItem
     public List<string> dependencyABNames = null;
 
     public AssetBundle assetBundle = null;
-    public UnityEngine.Object obj = null;
+    public UnityEngine.Object asset = null; //用于加载图片、声音等资产
 }

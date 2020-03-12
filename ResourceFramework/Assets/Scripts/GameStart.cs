@@ -7,8 +7,11 @@ using UnityEngine;
 
 public class GameStart : MonoBehaviour
 {
+    public Transform recycleTrans;
+
     void Awake()
     {
         AssetBundleManager.Instance.LoadAssetBundleConfig();
+        ResourceService.Instance.Init(recycleTrans);
     }
 }

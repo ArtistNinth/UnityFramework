@@ -8,11 +8,10 @@ using UnityEngine;
 
 public class ResourceService:Singleton<ResourceService>
 {
-    private static Dictionary<uint, ResourceItem> loadedResourceItemDic = new Dictionary<uint, ResourceItem>();
-    private static Dictionary<uint, AssetBundleRequest> loadingResourceItemDic = new Dictionary<uint, AssetBundleRequest>();
-
-    private static Dictionary<uint, ClassObjectPool<GameObject>> instanceDic = new Dictionary<uint, ClassObjectPool<GameObject>>();
-    private static Dictionary<GameObject, uint> goCrcDic = new Dictionary<GameObject, uint>();
+    private Dictionary<uint, ResourceItem> loadedResourceItemDic = new Dictionary<uint, ResourceItem>();
+    private Dictionary<uint, AssetBundleRequest> loadingResourceItemDic = new Dictionary<uint, AssetBundleRequest>();
+    private Dictionary<uint, List<GameObject>> prefabPoolDic = new Dictionary<uint, List<GameObject>>();
+    private Dictionary<int, uint> guidCrcDic = new Dictionary<int, uint>();
     private Transform recycleTrans;
 
     public delegate void LoadCompleteCallback(UnityEngine.Object asset);
@@ -42,15 +41,6 @@ public class ResourceService:Singleton<ResourceService>
         }
 
         return asset;
-    }
-
-    public void UnLoadResource(string path)
-    {
-        uint crc = Crc32.GetCrc32(path);
-        ResourceItem item = loadedResourceItemDic[crc];
-        item.asset = null;
-        loadedResourceItemDic.Remove(crc);        
-        ResourceManager.Instance.UnLoadResourceAB(crc);
     }
 
     public void LoadResourceAsync<T>(string path, LoadCompleteCallback callback = null) where T : UnityEngine.Object
@@ -97,6 +87,22 @@ public class ResourceService:Singleton<ResourceService>
         item.asset = asset;
         loadedResourceItemDic.Add(item.crc, item);
     }
+
+    public void PreLoadResource<T>(List<string> pathList) where T:UnityEngine.Object
+    {
+        for (int i = 0; i < pathList.Count; i++)
+        {
+            string path = pathList[i];
+            uint crc = Crc32.GetCrc32(path);
+
+            if (!loadedResourceItemDic.ContainsKey(crc))
+            {
+                ResourceItem item = ResourceManager.Instance.LoadResourceAB(crc);
+                UnityEngine.Object asset = item.assetBundle.LoadAsset<T>(path);
+                this.CacheResource(ref item, asset);
+            }
+        }
+    }
     #endregion
 
     #region Prefab
@@ -105,20 +111,21 @@ public class ResourceService:Singleton<ResourceService>
         uint crc = Crc32.GetCrc32(path);
 
         GameObject instance = null;
-
-        if (!instanceDic.ContainsKey(crc))
+        if (prefabPoolDic.ContainsKey(crc))
         {
-            ClassObjectPool<GameObject> pool = ObjectManager.Instance.GetOrCreateClassPool<GameObject>(Constants.PrefabInstanceSize);
-            instanceDic.Add(crc, pool);
+            List<GameObject> prefabList = prefabPoolDic[crc];
+            if (prefabList != null && prefabList.Count > 0)
+            {
+                instance = prefabList[0];
+                prefabList.RemoveAt(0);
+            }
         }
 
-        ClassObjectPool<GameObject> instancePool = instanceDic[crc];
-        instance = instancePool.Spawn(false);
         if (instance == null)
         {
             GameObject go = this.LoadResource<GameObject>(path) as GameObject;
             instance = GameObject.Instantiate(go);
-            goCrcDic.Add(instance, crc);
+            guidCrcDic.Add(instance.GetInstanceID(), crc);
         }
 
         return instance;
@@ -130,19 +137,22 @@ public class ResourceService:Singleton<ResourceService>
 
         GameObject instance = null;
 
-        if (!instanceDic.ContainsKey(crc))
+        if (prefabPoolDic.ContainsKey(crc))
         {
-            ClassObjectPool<GameObject> pool = ObjectManager.Instance.GetOrCreateClassPool<GameObject>(Constants.PrefabInstanceSize);
-            instanceDic.Add(crc, pool);
+            List<GameObject> prefabList = prefabPoolDic[crc];
+            if (prefabList != null && prefabList.Count > 0)
+            {
+                instance = prefabList[0];
+                prefabList.RemoveAt(0);
+            }
         }
 
-        ClassObjectPool<GameObject> instancePool = instanceDic[crc];
-        instance = instancePool.Spawn(false);
         if (instance == null)
         {
-            this.LoadResourceAsync<GameObject>(path, (UnityEngine.Object go) => {
+            this.LoadResourceAsync<GameObject>(path, (UnityEngine.Object go) =>
+            {
                 instance = GameObject.Instantiate(go as GameObject);
-                goCrcDic.Add(instance, crc);
+                guidCrcDic.Add(instance.GetInstanceID(), crc);
                 if (callback != null)
                 {
                     callback(instance);
@@ -160,18 +170,31 @@ public class ResourceService:Singleton<ResourceService>
 
     public void ReleaseInstance(GameObject go,bool destroyGameObject)
     {
-        uint crc = goCrcDic[go];
-        ClassObjectPool<GameObject> instancePool = instanceDic[crc];
+        uint crc = guidCrcDic[go.GetInstanceID()];
 
         if (destroyGameObject)
         {
+            guidCrcDic.Remove(go.GetInstanceID());
             GameObject.Destroy(go);
         }
         else
         {
             go.transform.SetParent(recycleTrans);
-            instancePool.Recyle(go);
+            List<GameObject> prefabList = null;
+            if (!prefabPoolDic.ContainsKey(crc))
+            {
+                prefabList = new List<GameObject>();
+                prefabPoolDic.Add(crc, prefabList);
+            }
+            else
+            {
+                prefabList = prefabPoolDic[crc];
+            }
+
+            prefabList.Add(go);
         }
     }
     #endregion
+
+    
 }

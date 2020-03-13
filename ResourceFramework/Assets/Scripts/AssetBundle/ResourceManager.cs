@@ -57,4 +57,5 @@ public class ResourceItem
 
     public AssetBundle assetBundle = null;
     public UnityEngine.Object asset = null; //用于加载图片、声音等资产
+    public GameObject prefabInstance = null; //用于实例化的Prefab
 }

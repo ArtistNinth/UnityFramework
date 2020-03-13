@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3568826146
+CRC: 2423481718
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -12,12 +12,15 @@ AssetBundleManifest:
       Name: capsule
       Dependencies: {}
     Info_3:
-      Name: resourcewnd
+      Name: sphere
       Dependencies: {}
     Info_4:
+      Name: resourcewnd
+      Dependencies: {}
+    Info_5:
       Name: startwnd
       Dependencies:
         Dependency_0: general
-    Info_5:
+    Info_6:
       Name: abconfig
       Dependencies: {}

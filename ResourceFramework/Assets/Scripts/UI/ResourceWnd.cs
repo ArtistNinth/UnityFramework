@@ -19,6 +19,7 @@ public class ResourceWnd : WndRoot
     private const string img3Path = "Assets/Images/general/discountDetail.png";
 
     private const string prefabPath = "Assets/Prefabs/Capsule.prefab";
+    private const string prefabPath2 = "Assets/Prefabs/Sphere.prefab";
 
     public void ClickLoadButton()
     {
@@ -27,14 +28,15 @@ public class ResourceWnd : WndRoot
         LoadSpriteAsync(img3, img3Path);
     }
 
-    public void ClickUnLoadBtn()
-    {
-        ResourceService.Instance.UnLoadResource(img1Path);
-    }
-
     public void ClickLoadPrefabButton()
     {
-        ResourceService.Instance.InstantiateAsync(prefabPath, (GameObject go) =>
+        GameObject go = ResourceService.Instance.Instantiate(prefabPath);
+        go.transform.SetParent(transformRoot);
+    }
+
+    public void ClickLoadPrefabButton2()
+    {
+        ResourceService.Instance.InstantiateAsync(prefabPath2, (GameObject go) =>
         {
             go.transform.SetParent(transformRoot);
         });
@@ -42,9 +44,14 @@ public class ResourceWnd : WndRoot
 
     public void ClickReleasePrefabButton()
     {
-        for (int i = 0; i < transformRoot.childCount; i++)
+        for (int i = transformRoot.childCount - 1; i >= 0; i--)
         {
-            ResourceService.Instance.ReleaseInstance(transformRoot.GetChild(i).gameObject, true);
+            ResourceService.Instance.ReleaseInstance(transformRoot.GetChild(i).gameObject, false);
         }
+    }
+
+    public void ClickClearCacheButton()
+    {
+        
     }
 }
